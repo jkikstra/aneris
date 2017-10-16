@@ -40,7 +40,7 @@ def load_data(cache_dir=_default_cache_dir, cache=True,
             fname = os.path.basename(localfile)
             url = '/'.join((github_url, 'raw', 'master',
                             'tests', 'test_data', fname))
-            urllib.urlretrieve(url, localfile)
+            urllib.request.urlretrieve(url, localfile)
 
     # read input
     hist = aneris.pd_read(files['hist'])
