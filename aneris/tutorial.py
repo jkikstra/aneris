@@ -46,10 +46,12 @@ def load_data(cache_dir=_default_cache_dir, cache=True,
     hist = aneris.pd_read(files['hist'])
     if hist.empty:
         raise ValueError('History file is empty')
+    hist.columns = hist.columns.astype(str)  # make sure they're all strings
     regions = aneris.pd_read(files['regions'])
     if regions.empty:
         raise ValueError('Region definition is empty')
     model, overrides, config = aneris.read_excel(files['model'])
+    model.columns = model.columns.astype(str)  # make sure they're all strings
     rc = aneris.RunControl(rc=files['rc'])
     rc.recursive_update('config', config)
 
