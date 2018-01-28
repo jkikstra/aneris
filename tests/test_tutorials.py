@@ -28,7 +28,7 @@ def _notebook_run(path, kernel=None, capsys=None):
     os.chdir(dirname)
     fname = os.path.join(here, 'test.ipynb')
     args = [
-        'python', jupyter.__file__, 'nbconvert', '--to', 'notebook', '--execute',
+        'jupyter', 'nbconvert', '--to', 'notebook', '--execute',
         '--ExecutePreprocessor.timeout=60',
         '--ExecutePreprocessor.kernel_name={}'.format(kernel),
         "--output", fname, path]
