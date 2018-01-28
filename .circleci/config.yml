@@ -11,9 +11,6 @@ jobs:
           name: ls
           command: pwd && ls
       - run:
-          name: ls-ixmp
-          command: pwd && ls ./ixmp
-      - run:
           name: Build App Docker Image
           command: docker build -t aneris/aneris:latest .
       - run:
