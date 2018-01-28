@@ -14,6 +14,9 @@ jobs:
           name: Build Py2 Docker Image
           command: /bin/sh -c "ln -f -s ci/py2/Dockerfile Dockerfile && docker build -t aneris/aneris:py2 ."
       - run:
+          name: Python2 Tests Install
+          command:  docker run aneris/aneris:py2 python2 -c 'import aneris; print(aneris.__file__)'
+      - run:
           name: Build Py3 Docker Image
           command: /bin/sh -c "ln -f -s ci/py3/Dockerfile Dockerfile && docker build -t aneris/aneris:py3 ."
       - run:
