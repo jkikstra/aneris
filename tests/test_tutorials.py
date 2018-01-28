@@ -5,6 +5,7 @@ import sys
 import tempfile
 import nbformat
 import pytest
+import jupyter
 
 here = os.path.dirname(os.path.realpath(__file__))
 tut_path = os.path.join(here, '..', 'doc')
@@ -27,9 +28,9 @@ def _notebook_run(path, kernel=None, capsys=None):
     os.chdir(dirname)
     fname = os.path.join(here, 'test.ipynb')
     args = [
-        "jupyter", "nbconvert", "--to", "notebook", "--execute",
-        "--ExecutePreprocessor.timeout=60",
-        "--ExecutePreprocessor.kernel_name={}".format(kernel),
+        'python', jupyter.__file__, 'nbconvert', '--to', 'notebook', '--execute',
+        '--ExecutePreprocessor.timeout=60',
+        '--ExecutePreprocessor.kernel_name={}'.format(kernel),
         "--output", fname, path]
     subprocess.check_call(args)
 
