@@ -1,0 +1,25 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/aneris
+    docker:
+      - image: docker:17.05.0-ce-git
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: ls
+          command: pwd && ls
+      - run:
+          name: ls-ixmp
+          command: pwd && ls ./ixmp
+      - run:
+          name: Build App Docker Image
+          command: docker build -t aneris/aneris:latest .
+      - run:
+          name: Python2 Tests
+          command: docker run aneris/aneris:latest python2 -m pytest -v /aneris/tests
+      - run:
+          name: Python3 Tests
+          command: docker run aneris/aneris:latest python3 -m pytest -v /aneris/tests
+      
