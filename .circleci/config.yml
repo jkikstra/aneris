@@ -11,15 +11,14 @@ jobs:
           name: ls
           command: pwd && ls
       - run:
-          name: Build App Docker Image
-          command: docker build -t aneris/aneris:py2 ./ci/py2
-      # - run:
-      #     name: Python2 Tests
-      #     command: docker run aneris/aneris:latest python2 -m pytest -v /aneris/tests
-      # - run:
-      #     name: Python3 Tests
-      #     command: docker run aneris/aneris:latest python3 -m pytest -v /aneris/tests
+          name: Build Py2 Docker Image
+          command: /bin/bash -c "ln -s ci/py2/Dockerfile Dockerfile && docker build -t aneris/aneris:py2 ."
       - run:
           name: Python2 Tests
-          command:  python2 -m pytest -v /aneris/tests
-      
+          command:  docker run aneris/aneris:py2 python2 -m pytest -v /aneris/tests
+      - run:
+          name: Build Py3 Docker Image
+          command: /bin/bash -c "ln -s ci/py3/Dockerfile Dockerfile && docker build -t aneris/aneris:py3 ."
+      - run:
+          name: Python3 Tests
+          command:  docker run aneris/aneris:py3 python3 -m pytest -v /aneris/tests
