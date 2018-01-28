@@ -1,4 +1,4 @@
-FROM gidden/python-viz
+FROM gidden/python3-viz
 
 COPY . /aneris
 WORKDIR /
