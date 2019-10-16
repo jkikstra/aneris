@@ -19,7 +19,7 @@ def _warn(msg, *args, **kwargs):
 
 
 class Harmonizer(object):
-    """A class used to harmonize model data to historical data in the 
+    """A class used to harmonize model data to historical data in the
     standard calculation format
     """
     # WARNING: it is not possible to programmatically do the offset methods
@@ -88,7 +88,7 @@ class Harmonizer(object):
         config : dict, optional
             configuration dictionary (see http://mattgidden.com/aneris/config.html for options)
         verify_indicies : bool, optional
-            check indicies of data and history, provide warning message if 
+            check indicies of data and history, provide warning message if
             different
         """
         if not isinstance(data.index, pd.MultiIndex):
@@ -188,7 +188,7 @@ class Harmonizer(object):
         return model
 
     def methods(self, overrides=None):
-        """Return pd.DataFrame of methods to use for harmonization given 
+        """Return pd.DataFrame of methods to use for harmonization given
         pd.DataFrame of overrides
         """
         # get method listing
@@ -221,7 +221,7 @@ class Harmonizer(object):
         return methods
 
     def harmonize(self, overrides=None):
-        """Return pd.DataFrame of harmonized trajectories given pd.DataFrame 
+        """Return pd.DataFrame of harmonized trajectories given pd.DataFrame
         overrides
         """
         # get special configurations
@@ -452,7 +452,7 @@ class HarmonizationDriver(object):
         self._model = pd.concat([self._model, exog])
 
     def harmonize(self, scenario, diagnostic_config=None):
-        """Harmonize a given scneario. Get results from 
+        """Harmonize a given scneario. Get results from
         aneris.harmonize.HarmonizationDriver.results()
 
         Parameters
@@ -515,7 +515,7 @@ class HarmonizationDriver(object):
         return self.model['Scenario'].unique()
 
     def harmonized_results(self):
-        """Return 3-tuple of (pd.DataFrame of harmonized trajectories, 
+        """Return 3-tuple of (pd.DataFrame of harmonized trajectories,
         pd.DataFrame of metadata, and similar of diagnostic information)
         """
         return (
@@ -648,15 +648,19 @@ def _harmonize_regions(config, prefix, suffix, regions, hist, model, overrides,
 
 
 def diagnostics(unharmonized, model, metadata, config=None):
-    """Provide warnings or throw errors based on harmonized model data and 
+    """Provide warnings or throw errors based on harmonized model data and
     metadata
 
     Current diagnostics are:
-    - large missing values (sector has 20% or more contribution to 
-      history and model does not report sector) 
-      - Warning provided
-    - non-negative CO2 emissions (values other than CO2 are < 0)
-      - Error thrown
+
+    * large missing values (sector has 20% or more contribution to
+      history and model does not report sector)
+
+        * Warning provided
+
+    * non-negative CO2 emissions (values other than CO2 are < 0)
+
+        * Error thrown
 
     Parameters
     ----------
@@ -667,7 +671,7 @@ def diagnostics(unharmonized, model, metadata, config=None):
     metadata : pd.DataFrame
         harmonization metadata
     config : dictionary, optional
-        ratio values to use in diagnostics, key options include 'mid' and 'end'. 
+        ratio values to use in diagnostics, key options include 'mid' and 'end'.
     """
     config = config or {'mid': 4.0, 'end': 2.0}
 

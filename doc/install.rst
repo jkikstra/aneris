@@ -3,6 +3,8 @@
 Install
 *******
 
+Please install via only one of the options below:
+
 Via Pip
 ~~~~~~~
 

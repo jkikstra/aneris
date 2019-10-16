@@ -38,7 +38,7 @@ Data from IAMs is expected to be in the following format with a sheetname "data"
    :header: 1
    :selection: A1:I4
 
-If overrides are provided, they are expected to be in the following formay with
+If overrides are provided, they are expected to be in the following format with
 a sheetname "harmonization".
 
 .. exceltable:: Example Harmonization Overrides
